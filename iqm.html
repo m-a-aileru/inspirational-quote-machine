@@ -6,16 +6,23 @@
 	<title>Inspirational Quote Machine - The App</title>
 </head>
 
-<body>
-	<h1>INSPIRATIONAL QUOTE MACHINE</h1>
+<body onload="updateBrowserStats()" onresize="updateBrowserStats()">
+	<main>
+		<h1>INSPIRATIONAL QUOTE MACHINE</h1>
 
-	<p id="intro">Need a few words of wisdom to pick you up? Just click the 'Generate Quote' button to help you to a more optimistic outlook.</p>
+		<p id="intro">Need a few words of wisdom to pick you up? Just click the 'Generate Quote' button to help you to a more optimistic outlook.</p>
 
-	<input type="button" name="generate" value="Generate Quote" onclick="generateQuote()">
+		<button onclick="generateQuote()">Generate Quote</button>
 	
-	<div id="bottom-half">
-		<p><b><output id="quote"></output></b></p>
-	</div>
+		<div id="bottom-half">
+			<p><b><output id="quote"></output></b></p>
+		</div>
+		
+		<div id="image-credit">
+			<div class="photographers">Photo by <a id="jakob" href="https://unsplash.com/@jakobowens1?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank">Jakob Owens</a></div>
+			<div class="photographers">Photo by <a id="marion" href="https://unsplash.com/@marion_michele?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank">Marion Michele</a></div>
+		</div>		
+	</main>
 	
 	<script>
 		var value;
@@ -25,11 +32,28 @@
 					  "It's almost always easy and cowardly to hate, but takes a brave heart to love and accept.", 
 					  "Don't compare yourself to the past. You change all the time without even knowing it.", 
 					  "Learn and understand the science before you define the art."];
+		var something = "";
 		
 		function generateQuote() { 
 			value = Math.round(Math.random() * 5);
 			document.getElementById('quote').innerHTML = quotes[value];
 		}		
+		
+		function updateBrowserStats() {
+			var photographer_one = document.getElementsByClassName('photographers')[0];
+			var photographer_two = document.getElementsByClassName('photographers')[1];
+
+			if (window.innerWidth <= 960) {
+				photographer_one.style.display = "none";
+				photographer_two.style.display = "inline";
+        	} else {
+				photographer_one.style.display = "inline";
+				photographer_two.style.display = "none";
+			}
+		}
+		
+
+		
 	</script>		
 </body>
 </html>
